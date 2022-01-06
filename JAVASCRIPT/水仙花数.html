@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <label>请输需要判断的水仙花数:</label><input type="text">
+  <br>
+  <button>判断</button>
+
+  <script>
+    let btn = document.querySelector("button");
+    let input = document.querySelector("input");
+    btn.onclick = function () {
+      let num = input.value;
+      //判断输入是否为非数字
+      if (!num || isNaN(Number(num))) {
+        alert("请输入数字");
+        return;
+      }
+      num = Number(num);
+      //判断是否为3位整数
+      if (num % 1 || num < 100 || num > 999) {
+        alert("这个数字不是水仙花数");
+        return;
+      }
+      if (numDaffodils(num)) {
+        alert("这个数字是水仙花数");
+      } else {
+        alert("这个数字不是水仙花数");
+
+      }    
+    }
+
+    function numDaffodils(num) {
+      let n = 3;
+      let i = 100;
+      let j = num;
+      let sum = 0;
+      for(let k = 0; k < n; k++) {
+        sum += parseInt(j / i)**n;
+        j = j % i;
+        i /= 10;
+      }
+      return sum === num;
+    }
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  
+    <label>请输入您的身高(m):</label><input type="text">
+    <br>
+    <label>请输入您的体重(kg):</label><input type="text" >
+    <br>
+    <button>开始测量您的体型</button>
+    <p id="result"></p>
+
+    <script>
+      let inputs = document.querySelectorAll("input");
+      let btn = document.querySelector("button");
+      let result = document.querySelector("#result");
+
+      function getBMI(h, w) {
+        return w/h**2;
+      }
+      btn.onclick = function () {
+        let h = inputs[0].value;
+        let w = inputs[1].value;
+        //输入判断 
+        if (!h || !w || isNaN(Number(h)) || isNaN(Number(w))) {
+          result.innerHTML = "请输入正确的的身高和体重";
+          return;
+        }
+        let bmi = getBMI(Number(h), Number(w));
+        console.log(bmi);
+        switch (true) {
+          case bmi < 18.5:
+            result.innerHTML = "您是偏瘦体型，可以适当增肥咯";
+            break;
+          case bmi < 25:
+            result.innerHTML = "您是标准体型，保持的不错哟";
+            break;
+          case bmi < 28:
+            result.innerHTML = "您是微胖体型，可以多吃粗粮，让饮食结构更加健康吧";
+            break;
+          case bmi < 32:
+            result.innerHTML = "您是肥胖体型，管住嘴迈开腿开始减肥吧！";
+            break;
+          default:
+            result.innerHTML = "您是过重体型，已经影响健康了，需要重视自己的饮食管理了";
+        }
+      }
+      
+    </script>
+</body>
+</html>
